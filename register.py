@@ -1,3 +1,4 @@
+# noinspection PyInterpreter
 from datetime import datetime
 import random
 import json
