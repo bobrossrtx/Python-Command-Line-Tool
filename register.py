@@ -28,8 +28,11 @@ def user_login_func():
                         json.dump(user_settings, user_login, indent=2)
 
                         if user["logged_in"]:
-                            default_user_settings = [{"username": user_name, "email": email}]
-                            user["user_details"] = default_user_settings
+                            default_user_details = [{"username": user_name, "email": email}]
+                            user["user_details"] = default_user_details
+
+                            default_user_settings = [{"password": False}]
+                            user["user_settings"] = default_user_settings
 
                     with open("settings.json", "w") as user_defaults:
                         json.dump(user_settings, user_defaults, indent=2)

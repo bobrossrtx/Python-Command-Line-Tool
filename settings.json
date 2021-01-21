@@ -5,7 +5,18 @@
         {
           "user": [
             {
-              "logged_in": false
+              "logged_in": true,
+              "user_details": [
+                {
+                  "username": "bobrossrtx",
+                  "email": "bobrossrtx@gmail.com"
+                }
+              ],
+              "user_settings": [
+                {
+                  "login": "uuid"
+                }
+              ]
             }
           ]
         }

@@ -35,30 +35,41 @@ def user_login_func():
                         json.dump(user_settings, user_defaults, indent=2)
 
 
-if os.path.exists(f"{username}_{uuid}.json"):
-    with open(f"{username}_{uuid}.json", "r") as read_data:
-        data = json.load(read_data)
+def password_uuid_login():
+    if os.path.exists("settings.json"):
+        with open("settings.json", "r") as settings_update:
+            user_settings = json.load(settings_update)
 
-    for username_data in data["user"]:
-        if username_data["username"] != username:
-            print()
-            print("You json file seems to not have that data within it")
-            print(
-                "Possible Problems: The file could be corrupt. The object username does not exist or has the wrong value")
-        else:
-            user_name = username_data["username"]
-            user_uuid = username_data["uuid"]
-            user_email = username_data["email"]
-            print()
-            print(f"You are now logged in as {user_name}")
-            print()
-            print(f"Your uuid: {user_uuid}")
-            print(f"Your email: {user_email}")
-            print()
+            for settings in user_settings["settings"]:
+                for user_preferences in settings["preferences"]:
+                    for user in user_preferences["user"]:
+                        for user_login in user["user_settings"]:
 
-    user_login_func()
+                            if user_login["password"]:
+                                if os.path.exists(f"{username}_{uuid}.json"):
+                                    with open(f"{username}_{uuid}.json", "r") as read_data:
+                                        data = json.load(read_data)
 
-elif username or uuid == "":
-    print("You need to enter the correct username and uuid")
-    print()
-    print("Please try again")
+                                    for username_data in data["user"]:
+                                        if username_data["username"] != username:
+                                            print()
+                                            print("You json file seems to not have that data within it")
+                                            print(
+                                                "Possible Problems: The file could be corrupt. The object username does not exist or has the wrong value")
+                                        else:
+                                            user_name = username_data["username"]
+                                            user_uuid = username_data["uuid"]
+                                            user_email = username_data["email"]
+                                            print()
+                                            print(f"You are now logged in as {user_name}")
+                                            print()
+                                            print(f"Your uuid: {user_uuid}")
+                                            print(f"Your email: {user_email}")
+                                            print()
+
+                                    user_login_func()
+
+                                elif username or uuid == "":
+                                    print("You need to enter the correct username and uuid")
+                                    print()
+                                    print("Please try again")
