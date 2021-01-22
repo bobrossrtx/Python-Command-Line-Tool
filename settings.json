@@ -5,16 +5,10 @@
         {
           "user": [
             {
-              "logged_in": true,
-              "user_details": [
-                {
-                  "username": "bobrossrtx",
-                  "email": "bobrossrtx@gmail.com"
-                }
-              ],
+              "logged_in": false,
               "user_settings": [
                 {
-                  "login": "uuid"
+                  "password": true
                 }
               ]
             }
