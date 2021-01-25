@@ -5,10 +5,11 @@
         {
           "user": [
             {
-              "logged_in": false,
-              "user_settings": [
+              "logged_in": true,
+              "user_details": [
                 {
-                  "password": true
+                  "username": "sample_user",
+                  "email": "sample_user@mail.com"
                 }
               ]
             }

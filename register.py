@@ -8,10 +8,11 @@ print()
 print("Sign Up Form")
 print()
 
+file = "settings.json"
 
 def user_login_func():
-    if os.path.exists("settings.json"):
-        with open("settings.json", "r") as settings_update:
+    if os.path.exists(file):
+        with open(file, "r") as settings_update:
             user_settings = json.load(settings_update)
 
             for settings in user_settings["settings"]:
@@ -24,22 +25,19 @@ def user_login_func():
                         else:
                             user["logged_in"] = True
 
-                    with open("settings.json", "w") as user_login:
+                    with open(file, "w") as user_login:
                         json.dump(user_settings, user_login, indent=2)
 
                         if user["logged_in"]:
                             default_user_details = [{"username": user_name, "email": email}]
                             user["user_details"] = default_user_details
 
-                            default_user_settings = [{"password": False}]
-                            user["user_settings"] = default_user_settings
-
-                    with open("settings.json", "w") as user_defaults:
+                    with open(file, "w") as user_defaults:
                         json.dump(user_settings, user_defaults, indent=2)
 
 
-if os.path.exists("settings.json"):
-    with open("settings.json", "r") as settings_update:
+if os.path.exists(file):
+    with open(file, "r") as settings_update:
         user_settings = json.load(settings_update)
 
         for settings in user_settings["settings"]:
@@ -79,7 +77,7 @@ if os.path.exists("settings.json"):
                                     dataFile = open(f"{user_name}_{uuid}.json", "w")
 
                                     # User data formatting for json
-                                    data = "{\"user\":[{" + f"\"username\": \"{user_name}\", \"email\": \"{email}\", \"uuid\": \"{uuid}\"" + "}]" + "}"
+                                    data = "{\"user\":[{" + f"\"username\": \"{user_name}\", \"email\": \"{email}\", \"uuid\": \"{uuid}\", \"settings\": [" + "{" + "\"password\": false}]}]}"
 
                                     # Writes the data into the .json file
                                     dataFile.write(str(data))
@@ -115,7 +113,7 @@ if os.path.exists("settings.json"):
                                     dataFile = open(f"{user_name}_{uuid}.json", "w")
 
                                     # User data formatting for json
-                                    data = "{\"user\":[{" + f"\"username\": \"{user_name}\", \"email\": \"{email}\", \"uuid\": \"{uuid}\"" + "}]" + "}"
+                                    data = "{\"user\":[{" + f"\"username\": \"{user_name}\", \"email\": \"{email}\", \"uuid\": \"{uuid}\", \"settings\": [" + "{" + "\"password\": false}]}]}"
 
                                     # Writes the data into the .json file
                                     dataFile.write(str(data))
@@ -141,7 +139,7 @@ if os.path.exists("settings.json"):
                             dataFile = open(f"{user_name}_{uuid}.json", "w")
 
                             # User data formatting for json
-                            data = "{\"user\":[{" + f"\"username\": \"{user_name}\", \"email\": \"{email}\", \"uuid\": \"{uuid}\"" + "}]" + "}"
+                            data = "{\"user\":[{" + f"\"username\": \"{user_name}\", \"email\": \"{email}\", \"uuid\": \"{uuid}\", \"settings\": [" + "{" + "\"password\": false}]}]}"
 
                             # Writes the data into the .json file
                             dataFile.write(str(data))
