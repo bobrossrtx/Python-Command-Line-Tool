@@ -8,8 +8,8 @@
               "logged_in": true,
               "user_details": [
                 {
-                  "username": "sample_user",
-                  "email": "sample_user@mail.com"
+                  "username": "sample",
+                  "email": "sample@mail.com"
                 }
               ]
             }
