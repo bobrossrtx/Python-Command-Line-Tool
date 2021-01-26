@@ -40,100 +40,49 @@ def user_login_func():
                     with open(file, "w") as user_defaults:
                         json.dump(user_settings, user_defaults, indent=2)
 
-def password():
-    password = getpass("Please enter a password: ")
-
+def valid_password(password):
     if len(password) < 8:
         print("you're password must be longer than 8 chars")
-        password = getpass("Please re-enter your password: ")
-
-        if len(password) > 8:
-            if "(" or ")" or "{" or "}" or "[" or "]" or "{" or "}" or "|" or "\\" in password:
-                print("you're password must not have any bracket chars")
-                password = getpass("Please re-enter your password: ")
-            else:
-                if "!" or "#" or "$" or "&" or "*" or "+" or "=" or "-" or "_" or "@" or "<" or ">" in password:
-                    # Creates a file for The user using the username and the uuid,
-                    # e.g. user_106033536.json
-                    data_file = open(f"{user_name}_{uuid}.json", "w")
-
-                    # User data formatting for json
-                    data = "{\"user\":[{" + f"\"username\": \"{user_name}\", \"email\": \"{email}\", \"uuid\": \"{uuid}\",\"password\": \"{password}\", \"settings\": [" + "{" + "\"password\": false}]}]}"
-
-                    # Writes the data into the .json file
-                    data_file.write(str(data))
-                    data_file.close()
-
-                    print()
-                    print(
-                        f"Your information has been saved in {user_name}_{uuid}.json")  # Tells you your file name
-                    print(
-                        f"Make sure to remember this uuid, you will need it later, {uuid}")  # Links you to your file directory
-                    print()
-
-                    file_path = os.path.abspath(f'{user_name}_{uuid}.json')  # File path
-                    print(saved_data + file_path)  # Prints where the data has been saved
-
-                    user_login_func()
-
-                    exit()
-
-    elif "!" or "#" or "$" or "&" or "*" or "+" or "=" or "-" or "_" or "@" or "<" or ">" and "q" or "w" or "e" or "r" or "t" or "y" or "u" or "i" or "o" or "p" or "a" or "s" or "d" or "f" or "g" or "h" or "j" or "k" or "l" or "z" or "x" or "c" or "v" or "b" or "n" or "m"  in password:
-        # Creates a file for The user using the username and the uuid,
-        # e.g. user_106033536.json
-        data_file = open(f"{user_name}_{uuid}.json", "w")
-
-        # User data formatting for json
-        data = "{\"user\":[{" + f"\"username\": \"{user_name}\", \"email\": \"{email}\", \"uuid\": \"{uuid}\",\"password\": \"{password}\", \"settings\": [" + "{" + "\"password\": false}]}]}"
-
-        # Writes the data into the .json file
-        data_file.write(str(data))
-        data_file.close()
-
-        print()
-        print(
-            f"Your information has been saved in {user_name}_{uuid}.json")  # Tells you your file name
-        print(
-            f"Make sure to remember this uuid, you will need it later, {uuid}")  # Links you to your file directory
-        print()
-
-        file_path = os.path.abspath(f'{user_name}_{uuid}.json')  # File path
-        print(saved_data + file_path)  # Prints where the data has been saved
-
-        user_login_func()
-
-        exit()
-
+        return False
     elif "(" or ")" or "{" or "}" or "[" or "]" or "{" or "}" or "|" or "\\" in password:
         print("you're password must not have any bracket chars")
-        password = getpass("Please re-enter your password: ")
+        return False
+    elif "!" or "#" or "$" or "&" or "*" or "+" or "=" or "-" or "_" or "@" or "<" or ">" and "q" or "w" or "e" or "r" or "t" or "y" or "u" or "i" or "o" or "p" or "a" or "s" or "d" or "f" or "g" or "h" or "j" or "k" or "l" or "z" or "x" or "c" or "v" or "b" or "n" or "m" not in password:
+        print("you're password must contain at least 1 sepcial character")
+        return False
+    return True
 
-    else:
-        # Creates a file for The user using the username and the uuid,
-        # e.g. user_106033536.json
-        data_file = open(f"{user_name}_{uuid}.json", "w")
+def password():
+    passwordTry = 1
+    while not valid_password(password):
+        passwordMessage = "Please "
+        passwordMessage += "re-enter your" if passwordTry > 1 else "enter a"
+        passwordMessage += " password: "
+        password = getpass(passwordMessage)
+        passwordTry += 1
 
-        # User data formatting for json
-        data = "{\"user\":[{" + f"\"username\": \"{user_name}\", \"email\": \"{email}\", \"uuid\": \"{uuid}\",\"password\": \"{password}\", \"settings\": [" + "{" + "\"password\": false}]}]}"
+    # Creates a file for The user using the username and the uuid,
+    # e.g. user_106033536.json
+    data_file = open(f"{user_name}_{uuid}.json", "w")
 
-        # Writes the data into the .json file
-        data_file.write(str(data))
-        data_file.close()
+    # User data formatting for json
+    data = "{\"user\":[{" + f"\"username\": \"{user_name}\", \"email\": \"{email}\", \"uuid\": \"{uuid}\",\"password\": \"{password}\", \"settings\": [" + "{" + "\"password\": false}]}]}"
 
-        print()
-        print(
-            f"Your information has been saved in {user_name}_{uuid}.json")  # Tells you your file name
-        print(
-            f"Make sure to remember this uuid, you will need it later, {uuid}")  # Links you to your file directory
-        print()
+    # Writes the data into the .json file
+    data_file.write(str(data))
+    data_file.close()
 
-        file_path = os.path.abspath(f'{user_name}_{uuid}.json')  # File path
-        print(saved_data + file_path)  # Prints where the data has been saved
+    print()
+    print(
+        f"Your information has been saved in {user_name}_{uuid}.json")  # Tells you your file name
+    print(
+        f"Make sure to remember this uuid, you will need it later, {uuid}")  # Links you to your file directory
+    print()
 
-        user_login_func()
+    file_path = os.path.abspath(f'{user_name}_{uuid}.json')  # File path
+    print(saved_data + file_path)  # Prints where the data has been saved
 
-        exit()
-
+    user_login_func()
 
 if os.path.exists(file):
     with open(file, "r") as settings_update:
