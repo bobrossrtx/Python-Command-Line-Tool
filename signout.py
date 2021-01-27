@@ -15,7 +15,7 @@ if os.path.exists(file):
                         print("You are now logged out")
 
                         user["logged_in"] = False
-                        user["user_details"] = {}
+                        user["user_details"] = [{}]
                     
                 with open(file, "w") as user_signout:
                     json.dump(user_settings, user_signout, indent=2)
