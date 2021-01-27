@@ -5,11 +5,8 @@
         {
           "user": [
             {
-              "logged_in": true,
-              "user_details": [
-                {
               "logged_in": false,
-              "user_details": {}
+              "user_details": [{}]
             }
           ],
           "local": [
