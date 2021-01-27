@@ -1,0 +1,3 @@
+Username = sample
+uuid = 75738240
+password = password1234
