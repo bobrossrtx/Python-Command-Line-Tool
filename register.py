@@ -1,6 +1,7 @@
 # noinspection PyInterpreter
 from datetime import datetime
 from getpass import getpass
+import hashlib
 import random
 import json
 import os
@@ -57,8 +58,13 @@ def password():
                     # e.g. user_106033536.json
                     data_file = open(f"{user_name}_{uuid}.json", "w")
 
+                    password_e = bytes(password, "utf-8")
+                    
+                    password_h = hashlib.sha256(password_e)
+                    password_s = password_h.hexdigest()
+
                     # User data formatting for json
-                    data = "{\"user\":[{" + f"\"username\": \"{user_name}\", \"email\": \"{email}\", \"uuid\": \"{uuid}\",\"password\": \"{password}\", \"settings\": [" + "{" + "\"password\": false}]}]}"
+                    data = "{\"user\":[{" + f"\"username\": \"{user_name}\", \"email\": \"{email}\", \"uuid\": \"{uuid}\",\"password\": \"{password_s}\", \"settings\": [" + "{" + "\"password\": false}]}]}"
 
                     # Writes the data into the .json file
                     data_file.write(str(data))
@@ -83,8 +89,13 @@ def password():
         # e.g. user_106033536.json
         data_file = open(f"{user_name}_{uuid}.json", "w")
 
+        password_e = bytes(password, "utf-8")
+                    
+        password_h = hashlib.sha256(password_e)
+        password_s = password_h.hexdigest()
+
         # User data formatting for json
-        data = "{\"user\":[{" + f"\"username\": \"{user_name}\", \"email\": \"{email}\", \"uuid\": \"{uuid}\",\"password\": \"{password}\", \"settings\": [" + "{" + "\"password\": false}]}]}"
+        data = "{\"user\":[{" + f"\"username\": \"{user_name}\", \"email\": \"{email}\", \"uuid\": \"{uuid}\",\"password\": \"{password_s}\", \"settings\": [" + "{" + "\"password\": false}]}]}"
 
         # Writes the data into the .json file
         data_file.write(str(data))
@@ -113,8 +124,13 @@ def password():
         # e.g. user_106033536.json
         data_file = open(f"{user_name}_{uuid}.json", "w")
 
+        password_e = bytes(password, "utf-8")
+                    
+        password_h = hashlib.sha256(password_e)
+        password_s = password_h.hexdigest()
+
         # User data formatting for json
-        data = "{\"user\":[{" + f"\"username\": \"{user_name}\", \"email\": \"{email}\", \"uuid\": \"{uuid}\",\"password\": \"{password}\", \"settings\": [" + "{" + "\"password\": false}]}]}"
+        data = "{\"user\":[{" + f"\"username\": \"{user_name}\", \"email\": \"{email}\", \"uuid\": \"{uuid}\",\"password\": \"{password_s}\", \"settings\": [" + "{" + "\"password\": false}]}]}"
 
         # Writes the data into the .json file
         data_file.write(str(data))
