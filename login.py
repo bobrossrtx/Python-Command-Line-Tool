@@ -9,6 +9,7 @@ print()
 
 file = "settings.json"
 
+
 def already_logged_in():
     with open(file, "r") as settings_update:
         user_settings = json.load(settings_update)
@@ -20,6 +21,7 @@ def already_logged_in():
                     if user["logged_in"]:
                         print("You are already logged in")
                         exit()
+
 
 def user_login_func():
     if os.path.exists(file):

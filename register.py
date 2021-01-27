@@ -7,7 +7,7 @@ import json
 import os
 
 print()
-print("Sign Up Form")
+print("Register")
 print()
 
 file = "settings.json"
@@ -15,6 +15,7 @@ failed = 'You have failed the login process, please try again.'
 
 valid_email = "@" + "."
 valid_email_error= "you need to enter a valid email address"
+
 
 def user_login_func():
     if os.path.exists(file):
@@ -40,6 +41,7 @@ def user_login_func():
 
                     with open(file, "w") as user_defaults:
                         json.dump(user_settings, user_defaults, indent=2)
+
 
 def password():
     password = getpass("Please enter a password: ")

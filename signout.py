@@ -1,7 +1,12 @@
 import json
 import os
 
+print()
+print("Signout")
+print()
+
 file = "settings.json"
+
 
 if os.path.exists(file):
     with open(file, "r") as sign_out_update:
