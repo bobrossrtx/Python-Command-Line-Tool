@@ -1,0 +1,27 @@
+import os
+
+from register import register
+
+pac_name = 'Nacom'
+
+register_nom = './register.py'
+login_nom = './login.py'
+
+print(pac_name + '\r\n')
+
+def help():
+    print('''
+nacom --help    ||    Shows this table
+nacom register  ||    Begins the registration proccess
+nacom login     ||    Login to your already existing user
+            ''')
+
+
+def user_input():
+    nacom_input = input()
+    user_input()
+
+if os.path.exists(register_nom) and os.path.exists(login_nom):
+    help()
+    user_input()
+    

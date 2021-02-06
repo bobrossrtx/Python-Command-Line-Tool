@@ -224,6 +224,3 @@ def register():
 
                             file_path = os.path.abspath(f'{user_name}_{uuid}.json')  # File path
                             print(saved_data + file_path)  # Prints where the data has been saved
-                            
-    # register_func = register()
-    # return(register_func)

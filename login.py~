@@ -123,5 +123,5 @@ def login():
                         print()
                         print("Please try again")
 
-    # login_func = login()
-    # return(login_func)
+    login_func = login()
+    return(login_func)
