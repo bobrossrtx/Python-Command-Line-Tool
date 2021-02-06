@@ -1,13 +1,13 @@
-import json
-import os
-
-print()
-print("Signout")
-print()
-
-file = "settings.json"
-
 def signout():
+    import json
+    import os
+
+    print()
+    print("Signout")
+    print()
+
+    file = "settings.json"
+
     if os.path.exists(file):
         with open(file, "r") as sign_out_update:
             user_settings = json.load(sign_out_update)
@@ -24,3 +24,4 @@ def signout():
                         
                     with open(file, "w") as user_signout:
                         json.dump(user_settings, user_signout, indent=2)
+signout()

@@ -1,30 +1,17 @@
-import json
-import os
-from getpass import getpass
-import hashlib
+def login():
+    import json
+    import os
+    from getpass import getpass
+    import hashlib
 
-print()
-print("login")
-print()
+    print()
+    print("login")
+    print()
 
-file = "settings.json"
-
-
-def already_logged_in():
-    with open(file, "r") as settings_update:
-        user_settings = json.load(settings_update)
-
-        for settings in user_settings["settings"]:
-            for user_preferences in settings["preferences"]:
-                for user in user_preferences["user"]:
-
-                    if user["logged_in"]:
-                        print("You are already logged in")
-                        exit()
+    file = "settings.json"
 
 
-def user_login_func():
-    if os.path.exists(file):
+    def already_logged_in():
         with open(file, "r") as settings_update:
             user_settings = json.load(settings_update)
 
@@ -35,20 +22,34 @@ def user_login_func():
                         if user["logged_in"]:
                             print("You are already logged in")
                             exit()
-                        else:
-                            user["logged_in"] = True
-                            default_user_details = [{"username": user_name, "email": user_email}]
-                            user["user_details"] = default_user_details
-
-                    with open(file, "w") as user_login:
-                        json.dump(user_settings, user_login, indent=2)
-
-already_logged_in()
 
 
-username = input("Please enter your Username: ")
-uuid = input("Please enter your UUID: ")
-def login():
+    def user_login_func():
+        if os.path.exists(file):
+            with open(file, "r") as settings_update:
+                user_settings = json.load(settings_update)
+
+                for settings in user_settings["settings"]:
+                    for user_preferences in settings["preferences"]:
+                        for user in user_preferences["user"]:
+
+                            if user["logged_in"]:
+                                print("You are already logged in")
+                                exit()
+                            else:
+                                user["logged_in"] = True
+                                default_user_details = [{"username": user_name, "email": user_email}]
+                                user["user_details"] = default_user_details
+
+                        with open(file, "w") as user_login:
+                            json.dump(user_settings, user_login, indent=2)
+
+    already_logged_in()
+
+
+    username = input("Please enter your Username: ")
+    uuid = input("Please enter your UUID: ")
+
     if os.path.exists(file):
         with open(f"{username}_{uuid}.json", "r") as settings_update:
             user = json.load(settings_update)
@@ -122,6 +123,4 @@ def login():
                         print("You need to enter the correct username and uuid")
                         print()
                         print("Please try again")
-
-    # login_func = login()
-    # return(login_func)
+login()
